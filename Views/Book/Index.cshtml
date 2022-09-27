@@ -1,0 +1,29 @@
+@model IEnumerable<VUB_MVC.Models.Book>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<head>
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+</head>
+<p>
+    @Html.ActionLink("Dodaje novu knjigu", "Create", "Book", null, new { @class = "my-link"})
+</p>
+<table class="table">
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                <h5>@Html.DisplayFor(modelItem => item.Name)</h5> 
+                <h6>@Html.DisplayFor(modelItem => item.Types.Name)</h6>
+                @Html.DisplayFor(modelItem => item.Description) <br>
+                <a asp-action="Edit" asp-route-id="@item.Id">Uredi</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalji</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Obriši</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
